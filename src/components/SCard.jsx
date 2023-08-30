@@ -9,6 +9,12 @@ export const Card = styled.article`
   border: 0.5px solid #888;
   border-radius: 25px;
   box-shadow: inset;
+  transition: ease-in;
+  transition-duration: 150ms;
+  
+  &:hover{
+    transform: translate(0, -10px);
+  }
 
   .left-align{
     text-align: left;

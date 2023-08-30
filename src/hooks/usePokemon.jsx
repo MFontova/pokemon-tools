@@ -3,6 +3,7 @@ import { getPokemon, getPokemonDetails } from "../providers/pokeapi"
 
 export const usePokemon = () => {
   const [pokemonList, setPokemonList] = useState([])
+  const [isFetching, setIsFetching] = useState(true)
 
   useEffect(() => {
     getPokemon().then(response => {
@@ -17,8 +18,9 @@ export const usePokemon = () => {
     })
     .then(resultingPokemon => {
       setPokemonList(resultingPokemon)
+      setIsFetching(false)
     })
   }, [])
 
-  return { pokemonList }
+  return { pokemonList, isFetching }
 }
