@@ -3,6 +3,10 @@ input {
   font-family: monospace;
 }
 
+body {
+  margin: 0;
+}
+
 p,
 a {
   font-size: large;

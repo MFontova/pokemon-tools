@@ -4,16 +4,20 @@ import { TeamContext } from "../context/team"
 import { Grid } from "../components/styled/SGrid"
 import { PokemonCard } from "../components/PokemonCard"
 import { Link } from "react-router-dom"
+import { useTeam } from "../hooks/useTeam"
 
 export const MyTeam = () => {
-  const {state, clearTeam} = useContext(TeamContext)
+  // const {state, clearTeam} = useContext(TeamContext)
+  const { state, clearTeam } = useTeam()
   return (
     <Layout>
       {
         state.length !== 0
           ? (
               <>
-                <h1>My team</h1>
+                <div className="justify-between">
+                  <h1>My team</h1>
+                </div>
                 <button onClick={() => clearTeam()}>Delete Team</button>
                 <Grid cols={3}>
                   {

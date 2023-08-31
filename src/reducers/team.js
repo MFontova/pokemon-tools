@@ -17,6 +17,7 @@ export const teamReducer = (state, action) => {
       return state.filter(item => item.id !== id)
 
     case 'CLEAR_TEAM':
+      localStorage.removeItem('currentTeam')
       return initialState
 
     default:
