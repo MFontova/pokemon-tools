@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
-export const Header = styled.header`
-  border-bottom: 1px solid #333;
+export const ToolBar = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0 25px;
+  padding: 20px 0;
 `
