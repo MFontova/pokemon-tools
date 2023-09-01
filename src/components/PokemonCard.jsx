@@ -5,8 +5,8 @@ import { PokemonType } from "./styled/SPokemonType"
 import image from '../assets/pokeball.png'
 import { useState } from "react"
 import { SStat } from "./styled/SStat"
-import { Badge } from "./styled/SBadge"
 import { SFlipButton } from "./styled/SFlipButton"
+import { SPokeballImage } from "./styled/SImage"
 
 export const PokemonCard = ({pokemon}) => {
   const { state, isFullTeam, addToTeam, removeFromTeam } = useTeam()
@@ -20,18 +20,21 @@ export const PokemonCard = ({pokemon}) => {
     removeFromTeam(pokemon)
   }
 
+  const onTeam = state.find(item => item.id === pokemon.id)
+
   return flipped
     ? (
       <Card>
         <div className="justify-between">
           <p>#{pokemon.id}</p>
-          {
-            state.find(item => item.id === pokemon.id)
-            ? <img onClick={state.find(item => item.id === pokemon.id) ? removeFromTeamHandler : addToTeamHandler} className="padding" height={30} src={image} alt="" />
-            : <img onClick={state.find(item => item.id === pokemon.id) ? removeFromTeamHandler : addToTeamHandler} className="padding" height={30} src={image} style={{filter: 'grayscale(1)'}} alt="" />
-          }
+          <SPokeballImage
+            onClick={onTeam ? removeFromTeamHandler : addToTeamHandler}
+            onTeam={onTeam}
+            src={image}
+            height={30}
+          />
         </div>
-        <img height={150} src={pokemon.sprites.other.dream_world.front_default} alt="" />
+        <img height={100} src={pokemon.sprites.other.dream_world.front_default} alt="" />
         <Grid cols={3}>
           {
             pokemon.stats.map(
@@ -57,19 +60,14 @@ export const PokemonCard = ({pokemon}) => {
       >
       <div className="justify-between">
         <p>#{pokemon.id}</p>
-        {
-          state.find(item => item.id === pokemon.id)
-          ? <img onClick={state.find(item => item.id === pokemon.id) ? removeFromTeamHandler : addToTeamHandler} className="padding" height={30} src={image} alt="" />
-          : <img onClick={state.find(item => item.id === pokemon.id) ? removeFromTeamHandler : addToTeamHandler} className="padding" height={30} src={image} style={{filter: 'grayscale(1)'}} alt="" />
-        }
+        <SPokeballImage
+            onClick={onTeam ? removeFromTeamHandler : addToTeamHandler}
+            onTeam={onTeam}
+            src={image}
+            height={30}
+          />
       </div>
-      <div
-      //   onClick={
-      //   state.find(item => item.id === pokemon.id)
-      //     ? removeFromTeamHandler
-      //     : addToTeamHandler
-      // }
-      >
+      <div>
         <img height={200} src={pokemon.sprites.other.dream_world.front_default} alt="" />
         <h2>{pokemon.name}</h2>
         <Grid cols={pokemon.types.length}>
